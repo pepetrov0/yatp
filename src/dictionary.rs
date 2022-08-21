@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use serde::Serialize;
 
-use crate::format;
+use crate::{format, Size};
 
 #[derive(Debug, Serialize, Clone, Copy)]
 pub struct Rect {
@@ -22,12 +22,18 @@ pub struct Entry {
 
 #[derive(Debug, Serialize)]
 pub struct Dictionary {
+    width: u32,
+    height: u32,
     items: Vec<Entry>,
 }
 
 impl Dictionary {
-    pub fn new() -> Self {
-        Self { items: vec![] }
+    pub fn new(size: Size) -> Self {
+        Self {
+            width: size.width,
+            height: size.height,
+            items: vec![],
+        }
     }
 
     #[allow(clippy::ptr_arg)]

@@ -12,7 +12,7 @@ impl Context {
     pub fn new(size: Size) -> Self {
         Self {
             packer: Packer::new(size),
-            dictionary: Dictionary::new(),
+            dictionary: Dictionary::new(size),
         }
     }
 

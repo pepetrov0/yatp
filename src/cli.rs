@@ -32,9 +32,21 @@ pub struct Cli {
     #[clap(short, long, value_parser, default_value_t = String::from("atlas"), help = "Name of output file(s)")]
     pub output: String,
 
-    #[clap(short, long, value_parser, default_value_t = 1024, help = "Width of output atlas")]
+    #[clap(
+        short,
+        long,
+        value_parser,
+        default_value_t = 1024,
+        help = "Width of output atlas"
+    )]
     pub width: u32,
 
-    #[clap(short, long, value_parser, default_value_t = 1024, help = "Height of output atlas")]
+    #[clap(
+        short,
+        long,
+        value_parser,
+        default_value_t = 1024,
+        help = "Height of output atlas"
+    )]
     pub height: u32,
 }
