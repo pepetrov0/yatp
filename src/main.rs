@@ -18,7 +18,7 @@ pub type Color = image::Rgba<u8>;
 
 fn main() {
     let cli = Cli::parse();
-    let mut context = Context::new();
+    let mut context = Context::new(Size::new(cli.width, cli.height));
 
     let input = cli.inputs;
     let gap = cli.gap;
@@ -38,8 +38,10 @@ fn main() {
         .map(|v| v.0);
 
     for file in images {
-        context.pack(&file, gap);
-        println!("packed: {}", file.to_string_lossy());
+        match context.pack(&file, gap).is_some() {
+            true => println!("packed: {}", file.to_string_lossy()),
+            false => println!("could not pack: {}", file.to_string_lossy()),
+        }
     }
 
     context.save_to_file(&name, image, dict).unwrap();

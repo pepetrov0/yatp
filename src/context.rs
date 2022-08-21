@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use crate::{dictionary::Dictionary, format, packer::Packer, Rect};
+use crate::{dictionary::Dictionary, format, packer::Packer, Rect, Size};
 
 #[derive(Debug)]
 pub struct Context {
@@ -9,9 +9,9 @@ pub struct Context {
 }
 
 impl Context {
-    pub fn new() -> Self {
+    pub fn new(size: Size) -> Self {
         Self {
-            packer: Packer::new(),
+            packer: Packer::new(size),
             dictionary: Dictionary::new(),
         }
     }

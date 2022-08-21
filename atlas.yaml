@@ -1,0 +1,201 @@
+items:
+- id: nrYSaw2R4faRyjroY_iQI
+  name: background-day
+  path: sprites/background-day.png
+  rect:
+    x: 4
+    y: 4
+    width: 288
+    height: 512
+- id: -nqDFka0vvoWO_d4BAPFb
+  name: background-night
+  path: sprites/background-night.png
+  rect:
+    x: 300
+    y: 4
+    width: 288
+    height: 512
+- id: SoiGuoDpPM0awDfLo7qpX
+  name: pipe-green
+  path: sprites/pipe-green.png
+  rect:
+    x: 596
+    y: 4
+    width: 52
+    height: 320
+- id: j4SvoRIocLT6i8tmesuUA
+  name: pipe-red
+  path: sprites/pipe-red.png
+  rect:
+    x: 656
+    y: 4
+    width: 52
+    height: 320
+- id: DrypptmiZowxNk2jVbB0r
+  name: base
+  path: sprites/base.png
+  rect:
+    x: 596
+    y: 332
+    width: 336
+    height: 112
+- id: cRCYTcEmZAYRZyqxRHGOw
+  name: gameover
+  path: sprites/gameover.png
+  rect:
+    x: 716
+    y: 4
+    width: 192
+    height: 42
+- id: IlOXlzHzhUulTsRLEwBOj
+  name: '0'
+  path: sprites/0.png
+  rect:
+    x: 916
+    y: 4
+    width: 24
+    height: 36
+- id: -QxnLa88y9Qi1bxLcg1fy
+  name: '1'
+  path: sprites/1.png
+  rect:
+    x: 948
+    y: 4
+    width: 16
+    height: 36
+- id: e4CVgAWqXfVTEQXdmn1lu
+  name: '2'
+  path: sprites/2.png
+  rect:
+    x: 972
+    y: 4
+    width: 24
+    height: 36
+- id: Tv67VpCl4KbvpZ1Qgl0X8
+  name: '3'
+  path: sprites/3.png
+  rect:
+    x: 716
+    y: 54
+    width: 24
+    height: 36
+- id: N1shrFqLZ5wz2w-23DTcj
+  name: '4'
+  path: sprites/4.png
+  rect:
+    x: 748
+    y: 54
+    width: 24
+    height: 36
+- id: UtSs7iMr4q4CPThR-lWRZ
+  name: '5'
+  path: sprites/5.png
+  rect:
+    x: 780
+    y: 54
+    width: 24
+    height: 36
+- id: R5eOqHWVbPHhQxZtvF_Wg
+  name: '6'
+  path: sprites/6.png
+  rect:
+    x: 812
+    y: 54
+    width: 24
+    height: 36
+- id: MY_DYYdIUz9diuyByrtPo
+  name: '7'
+  path: sprites/7.png
+  rect:
+    x: 844
+    y: 54
+    width: 24
+    height: 36
+- id: h2BboXA2vlwX5xpc6SDi4
+  name: '8'
+  path: sprites/8.png
+  rect:
+    x: 876
+    y: 54
+    width: 24
+    height: 36
+- id: RJ-wVQuuqJ1E6uBW5MBSj
+  name: '9'
+  path: sprites/9.png
+  rect:
+    x: 908
+    y: 54
+    width: 24
+    height: 36
+- id: lEx1bUCHBB2K68hV72rJA
+  name: bluebird-downflap
+  path: sprites/bluebird-downflap.png
+  rect:
+    x: 940
+    y: 54
+    width: 34
+    height: 24
+- id: s1z1f39Oei2rAQgDQujWT
+  name: bluebird-midflap
+  path: sprites/bluebird-midflap.png
+  rect:
+    x: 982
+    y: 54
+    width: 34
+    height: 24
+- id: -RFE7gWOMNlCMcPku14Hs
+  name: bluebird-upflap
+  path: sprites/bluebird-upflap.png
+  rect:
+    x: 716
+    y: 98
+    width: 34
+    height: 24
+- id: mDlgWj3hurRroIx3LBfCz
+  name: redbird-downflap
+  path: sprites/redbird-downflap.png
+  rect:
+    x: 758
+    y: 98
+    width: 34
+    height: 24
+- id: Skev4IfuZYVe5cWsS5mcB
+  name: redbird-midflap
+  path: sprites/redbird-midflap.png
+  rect:
+    x: 800
+    y: 98
+    width: 34
+    height: 24
+- id: NIWrxRa03xyQnsATsOd5c
+  name: redbird-upflap
+  path: sprites/redbird-upflap.png
+  rect:
+    x: 842
+    y: 98
+    width: 34
+    height: 24
+- id: AgfJ7qyLAi7L2i30g2JrI
+  name: yellowbird-downflap
+  path: sprites/yellowbird-downflap.png
+  rect:
+    x: 884
+    y: 98
+    width: 34
+    height: 24
+- id: UoGxgjLYcc7pX1_CHk5gh
+  name: yellowbird-midflap
+  path: sprites/yellowbird-midflap.png
+  rect:
+    x: 926
+    y: 98
+    width: 34
+    height: 24
+- id: LDoxkSjFjQ1BnWxJcACFG
+  name: yellowbird-upflap
+  path: sprites/yellowbird-upflap.png
+  rect:
+    x: 968
+    y: 98
+    width: 34
+    height: 24
