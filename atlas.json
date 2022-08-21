@@ -1,0 +1,290 @@
+{
+  "items": [
+    {
+      "id": "4svlXHwEFTKCUWpfbCnpx",
+      "name": "0",
+      "path": "sprites/0.png",
+      "rect": {
+        "x": 2,
+        "y": 2,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "Ub0heoaSAHpAsSgV3_-os",
+      "name": "1",
+      "path": "sprites/1.png",
+      "rect": {
+        "x": 28,
+        "y": 2,
+        "width": 16,
+        "height": 36
+      }
+    },
+    {
+      "id": "3KkMA06hVp0F1U6gnPlEn",
+      "name": "2",
+      "path": "sprites/2.png",
+      "rect": {
+        "x": 46,
+        "y": 2,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "wPj2nblf4cFI365oN1-gY",
+      "name": "3",
+      "path": "sprites/3.png",
+      "rect": {
+        "x": 72,
+        "y": 2,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "yRrWij8i0NGLRMManWrkg",
+      "name": "4",
+      "path": "sprites/4.png",
+      "rect": {
+        "x": 98,
+        "y": 2,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "TdfX2zQ6uAEyA1HM21UAc",
+      "name": "5",
+      "path": "sprites/5.png",
+      "rect": {
+        "x": 2,
+        "y": 40,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "kFJoqw2p2thmBsBVVX1M8",
+      "name": "6",
+      "path": "sprites/6.png",
+      "rect": {
+        "x": 28,
+        "y": 40,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "Twli7QsSZGQiZoUXxeFN6",
+      "name": "7",
+      "path": "sprites/7.png",
+      "rect": {
+        "x": 54,
+        "y": 40,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "Ye7Of7bnLrlTY0kYOgJCe",
+      "name": "8",
+      "path": "sprites/8.png",
+      "rect": {
+        "x": 80,
+        "y": 40,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "EbQu5EjmEqjQ5UMIPKlfo",
+      "name": "9",
+      "path": "sprites/9.png",
+      "rect": {
+        "x": 2,
+        "y": 78,
+        "width": 24,
+        "height": 36
+      }
+    },
+    {
+      "id": "AXF73njRXsQfMu1lOd6zj",
+      "name": "background-day",
+      "path": "sprites/background-day.png",
+      "rect": {
+        "x": 124,
+        "y": 2,
+        "width": 288,
+        "height": 512
+      }
+    },
+    {
+      "id": "81bybJzW32R7E1nWeaEg2",
+      "name": "background-night",
+      "path": "sprites/background-night.png",
+      "rect": {
+        "x": 414,
+        "y": 2,
+        "width": 288,
+        "height": 512
+      }
+    },
+    {
+      "id": "_cLgi-NFAo4air-le0uGJ",
+      "name": "base",
+      "path": "sprites/base.png",
+      "rect": {
+        "x": 2,
+        "y": 516,
+        "width": 336,
+        "height": 112
+      }
+    },
+    {
+      "id": "aamkkeIy6ugrnb2MfnHgV",
+      "name": "bluebird-downflap",
+      "path": "sprites/bluebird-downflap.png",
+      "rect": {
+        "x": 704,
+        "y": 2,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "EKNo8SrS6wOX1WIS9Zu3H",
+      "name": "bluebird-midflap",
+      "path": "sprites/bluebird-midflap.png",
+      "rect": {
+        "x": 740,
+        "y": 2,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "TD7KsUSYxF3aOhgqpH8M6",
+      "name": "bluebird-upflap",
+      "path": "sprites/bluebird-upflap.png",
+      "rect": {
+        "x": 776,
+        "y": 2,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "-FMEPn3LZLM5StOAb6r31",
+      "name": "gameover",
+      "path": "sprites/gameover.png",
+      "rect": {
+        "x": 812,
+        "y": 2,
+        "width": 192,
+        "height": 42
+      }
+    },
+    {
+      "id": "6oMVus6XCWcJ95LFeWBlT",
+      "name": "message",
+      "path": "sprites/message.png",
+      "rect": {
+        "x": 704,
+        "y": 46,
+        "width": 184,
+        "height": 267
+      }
+    },
+    {
+      "id": "TVwJH6OjbSjd9xkloZRrY",
+      "name": "pipe-green",
+      "path": "sprites/pipe-green.png",
+      "rect": {
+        "x": 890,
+        "y": 46,
+        "width": 52,
+        "height": 320
+      }
+    },
+    {
+      "id": "ZYSKEV9E6YVIDZ_wwFClG",
+      "name": "pipe-red",
+      "path": "sprites/pipe-red.png",
+      "rect": {
+        "x": 944,
+        "y": 46,
+        "width": 52,
+        "height": 320
+      }
+    },
+    {
+      "id": "zK9RXy0ZvnkcMYNwtz9Oi",
+      "name": "redbird-downflap",
+      "path": "sprites/redbird-downflap.png",
+      "rect": {
+        "x": 28,
+        "y": 78,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "5N4fgk5CcNanLSprBrZSX",
+      "name": "redbird-midflap",
+      "path": "sprites/redbird-midflap.png",
+      "rect": {
+        "x": 64,
+        "y": 78,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "-pDraIsJ8gLNP1-zMo1SM",
+      "name": "redbird-upflap",
+      "path": "sprites/redbird-upflap.png",
+      "rect": {
+        "x": 28,
+        "y": 104,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "sjKKw52V6uS-9TH5lOoAh",
+      "name": "yellowbird-downflap",
+      "path": "sprites/yellowbird-downflap.png",
+      "rect": {
+        "x": 64,
+        "y": 104,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "IF1a2SpZzmS35NPY8B415",
+      "name": "yellowbird-midflap",
+      "path": "sprites/yellowbird-midflap.png",
+      "rect": {
+        "x": 2,
+        "y": 130,
+        "width": 34,
+        "height": 24
+      }
+    },
+    {
+      "id": "HIJ0QeGOR7T-P9BKDKTvj",
+      "name": "yellowbird-upflap",
+      "path": "sprites/yellowbird-upflap.png",
+      "rect": {
+        "x": 38,
+        "y": 130,
+        "width": 34,
+        "height": 24
+      }
+    }
+  ]
+}

@@ -6,6 +6,12 @@ mod cli;
 mod context;
 mod dictionary;
 mod format;
+mod packer;
+
+pub type Size = euclid::Size2D<u32, u32>;
+pub type Point = euclid::Point2D<u32, u32>;
+pub type Rect = euclid::Rect<u32, u32>;
+pub type Color = image::Rgba<u8>;
 
 fn main() {
     let cli = Cli::parse();

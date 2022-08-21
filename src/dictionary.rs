@@ -1,8 +1,10 @@
+use std::path::PathBuf;
+
 use serde::Serialize;
 
 use crate::format;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone, Copy)]
 pub struct Rect {
     pub x: u32,
     pub y: u32,
@@ -10,7 +12,7 @@ pub struct Rect {
     pub height: u32,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 pub struct Entry {
     pub id: String,
     pub name: String,
@@ -20,7 +22,7 @@ pub struct Entry {
 
 #[derive(Debug, Serialize)]
 pub struct Dictionary {
-    pub items: Vec<Entry>,
+    items: Vec<Entry>,
 }
 
 impl Dictionary {
@@ -28,7 +30,32 @@ impl Dictionary {
         Self { items: vec![] }
     }
 
-    pub fn pick_name(&self, name: &str) -> String {
+    #[allow(clippy::ptr_arg)]
+    pub fn record(&mut self, path: &PathBuf, rect: &crate::Rect) -> Entry {
+        let name = path
+            .file_stem()
+            .or_else(|| path.file_name())
+            .unwrap_or(path.as_os_str())
+            .to_string_lossy()
+            .to_string();
+
+        let entry = Entry {
+            id: nanoid::nanoid!(),
+            name: self.pick_name(&name),
+            path: path.to_string_lossy().to_string(),
+            rect: self::Rect {
+                x: rect.origin.x,
+                y: rect.origin.y,
+                width: rect.size.width,
+                height: rect.size.height,
+            },
+        };
+
+        self.items.push(entry.clone());
+        entry
+    }
+
+    fn pick_name(&self, name: &str) -> String {
         let exists = |name: &str| self.items.iter().any(|v| v.name == name);
 
         if !exists(name) {
