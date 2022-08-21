@@ -18,13 +18,10 @@ impl Context {
 
     pub fn pack(&mut self, path: &PathBuf, gap: u32) -> Option<Rect> {
         let image = image::open(path).ok()?;
-        loop {
-            if let Some(rect) = self.packer.pack(&image, gap) {
-                self.dictionary.record(path, &rect);
-                return Some(rect);
-            } else if !self.packer.enlarge() {
-                break;
-            }
+
+        if let Some(rect) = self.packer.pack(&image, gap) {
+            self.dictionary.record(path, &rect);
+            return Some(rect);
         }
 
         None

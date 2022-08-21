@@ -1,6 +1,9 @@
+use std::path::PathBuf;
+
 use clap::Parser;
 use cli::Cli;
 use context::Context;
+use itertools::Itertools;
 
 mod cli;
 mod context;
@@ -23,24 +26,35 @@ fn main() {
     let image = cli.image;
     let dict = cli.dict;
 
-    for file in input
+    let images = input
         .into_iter()
-        .flat_map(|v| match v.is_dir() {
-            true => v
-                .read_dir()
-                .map(|v| {
-                    v.into_iter()
-                        .flat_map(|v| v.map(|v| v.path()))
-                        .collect::<Vec<_>>()
-                })
-                .unwrap_or_default(),
-            false => vec![v],
-        })
+        .flat_map(expand_path)
         .filter(|v| v.is_file())
-    {
+        .filter_map(|v| {
+            let image = image::open(v.clone()).ok()?;
+            Some((v, image.height()))
+        })
+        .sorted_by(|a, b| (b.1).cmp(&a.1))
+        .map(|v| v.0);
+
+    for file in images {
         context.pack(&file, gap);
         println!("packed: {}", file.to_string_lossy());
     }
 
     context.save_to_file(&name, image, dict).unwrap();
+}
+
+fn expand_path(path: PathBuf) -> Vec<PathBuf> {
+    if !path.is_dir() {
+        return vec![path];
+    }
+
+    path.read_dir()
+        .map(|v| v.collect_vec())
+        .unwrap_or_default()
+        .into_iter()
+        .filter_map(|v| v.ok())
+        .flat_map(|v| expand_path(v.path()))
+        .collect_vec()
 }
