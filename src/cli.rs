@@ -5,9 +5,9 @@ use crate::format;
 
 #[derive(Debug, Parser)]
 #[clap(
-    about = "Small and simple CLI application to pack \nmultiple textures/sprites into a texture atlas/sprite sheet."
+    about = "Yet Another Texture Packer - a small and simple CLI application to pack \nmultiple textures/sprites into a texture atlas/sprite sheet."
 )]
-#[clap(version = "1.0.0")]
+#[clap(version = env!("CARGO_PKG_VERSION"))]
 pub struct Cli {
     #[clap(value_parser, help = "Files and folders to pack")]
     pub inputs: Vec<PathBuf>,

@@ -2,6 +2,7 @@ use std::path::PathBuf;
 
 use clap::Parser;
 use cli::Cli;
+use colored::Colorize;
 use context::Context;
 use itertools::Itertools;
 
@@ -26,25 +27,132 @@ fn main() {
     let image = cli.image;
     let dict = cli.dict;
 
-    let images = input
-        .into_iter()
-        .flat_map(expand_path)
-        .filter(|v| v.is_file())
-        .filter_map(|v| {
-            let image = image::open(v.clone()).ok()?;
-            Some((v, image.height()))
-        })
-        .sorted_by(|a, b| (b.1).cmp(&a.1))
-        .map(|v| v.0);
+    let images = input.into_iter().flat_map(expand_path).collect_vec();
 
-    for file in images {
-        match context.pack(&file, gap).is_some() {
-            true => println!("packed: {}", file.to_string_lossy()),
-            false => println!("could not pack: {}", file.to_string_lossy()),
+    println!("{}", "   PACKING    ".black().on_bright_green());
+
+    // filtering stage
+    let mut filtered_images = vec![];
+    let mut skipped_images = vec![];
+    for path in images.into_iter() {
+        match path.is_file() {
+            true => (),
+            false => {
+                println!(
+                    " {} {} {}",
+                    ">".bright_yellow().bold(),
+                    path.to_string_lossy(),
+                    "- not a file".bright_black().italic()
+                );
+                skipped_images.push(path);
+                continue;
+            }
+        }
+
+        let image = match image::open(&path) {
+            Ok(image) => (image.height(), path),
+            Err(err) => {
+                println!(
+                    " {} {} {}",
+                    ">".bright_yellow().bold(),
+                    path.to_string_lossy(),
+                    format!("- {}", err).to_lowercase().bright_black().italic()
+                );
+                skipped_images.push(path);
+                continue;
+            }
+        };
+
+        filtered_images.push(image);
+    }
+
+    // sort by height
+    let images = filtered_images
+        .into_iter()
+        .sorted_by(|a, b| b.0.cmp(&a.0))
+        .map(|v| v.1)
+        .collect_vec();
+
+    // check if no images were provided
+    if images.is_empty() {
+        println!(
+            " {} no files provided for packing!",
+            "error:".bright_red().bold()
+        );
+        return;
+    }
+
+    // packing stage
+    let mut failed_images = vec![];
+    for path in images {
+        match context.pack(&path, gap).is_some() {
+            true => println!(
+                " {} {} {}",
+                "+".bright_green().bold(),
+                path.to_string_lossy(),
+                "- ok".bright_black().italic()
+            ),
+            false => {
+                println!(
+                    " {} {} {}",
+                    "!".bright_red().bold(),
+                    path.to_string_lossy(),
+                    "- not enough space".bright_black().italic()
+                );
+                failed_images.push(path);
+            }
         }
     }
 
-    context.save_to_file(&name, image, dict).unwrap();
+    // print out skipped_images
+    if !skipped_images.is_empty() {
+        println!();
+        println!("{}", "   SKIPPED   ".black().on_bright_yellow());
+        for path in skipped_images {
+            println!(" {} {}", ">".bold(), path.to_string_lossy());
+        }
+    }
+
+    // print out failed_images
+    if !failed_images.is_empty() {
+        println!();
+        println!("{}", "   FAILED    ".black().on_bright_red());
+        for path in &failed_images {
+            println!(" {} {}", ">".bold(), path.to_string_lossy());
+        }
+    }
+
+    // write to file
+    println!();
+    println!("{}", "   OUTPUT    ".black().on_bright_white());
+    match context.save_to_file(&name, image, dict) {
+        Ok(_) => {
+            println!(" {} {}.{}", "> image:".bold(), name, image.ext());
+            if let Some(dict) = dict {
+                println!(" {} {}.{}", "> dictionary:".bold(), name, dict.ext());
+            }
+
+            // print out attention if failed_images > 0
+            if !failed_images.is_empty() {
+                println!();
+                println!(
+                    " {} {}",
+                    "ATTENTION:".red().bold(),
+                    format!("{} images failed to pack!", failed_images.len()).red(),
+                );
+                println!("  {}",
+                "Consider increasing the output size using -w and/or -h!"
+                    .bright_black()
+                    .italic()
+                     );
+            }
+        }
+        Err(err) => {
+            println!(" {} {}", "error:".bright_red().bold(), err);
+        }
+    }
+
+    println!();
 }
 
 fn expand_path(path: PathBuf) -> Vec<PathBuf> {
