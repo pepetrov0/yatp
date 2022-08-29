@@ -14,7 +14,6 @@ pub struct Rect {
 
 #[derive(Debug, Serialize, Clone)]
 pub struct Entry {
-    pub id: String,
     pub name: String,
     pub path: String,
     pub rect: Rect,
@@ -46,7 +45,6 @@ impl Dictionary {
             .to_string();
 
         let entry = Entry {
-            id: nanoid::nanoid!(),
             name: self.pick_name(&name),
             path: path.to_string_lossy().to_string(),
             rect: self::Rect {

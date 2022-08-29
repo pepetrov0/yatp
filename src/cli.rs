@@ -4,8 +4,12 @@ use std::path::PathBuf;
 use crate::format;
 
 #[derive(Debug, Parser)]
+#[clap(
+    about = "Small and simple CLI application to pack \nmultiple textures/sprites into a texture atlas/sprite sheet."
+)]
+#[clap(version = "1.0.0")]
 pub struct Cli {
-    #[clap(value_parser)]
+    #[clap(value_parser, help = "Files and folders to pack")]
     pub inputs: Vec<PathBuf>,
 
     #[clap(
@@ -25,7 +29,7 @@ pub struct Cli {
         long,
         arg_enum,
         value_parser,
-        help = "Output format of dictionary"
+        help = "Output format of dictionary (optional)"
     )]
     pub dict: Option<format::DictionaryFormat>,
 
