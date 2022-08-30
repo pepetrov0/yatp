@@ -6,7 +6,7 @@ version = "1.0.0"
 edition = "2021"
 homepage = "https://github.com/pepetrov0/yatp"
 repository = "https://github.com/pepetrov0/yatp"
-license-file = "LICENSE"
+license = "MIT"
 categories = [
   "game-development",
   "command-line-utilities",
