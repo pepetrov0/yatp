@@ -3,6 +3,12 @@ use image::{DynamicImage, RgbaImage};
 use crate::{format, Color, Point, Rect, Size};
 
 #[derive(Debug)]
+pub struct Packer {
+    image: RgbaImage,
+    bins: Bin,
+}
+
+#[derive(Debug)]
 struct Bin {
     pub occupied: Option<Size>,
     pub area: Rect,
@@ -63,12 +69,6 @@ impl Bin {
 
         Some(Rect::new(self.area.origin, size))
     }
-}
-
-#[derive(Debug)]
-pub struct Packer {
-    image: RgbaImage,
-    bins: Bin,
 }
 
 impl Packer {
