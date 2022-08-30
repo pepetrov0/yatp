@@ -3,8 +3,8 @@ use std::path::PathBuf;
 use clap::Parser;
 use colored::Colorize;
 use itertools::Itertools;
-use yatp::Cli;
-use yatp::Context;
+use yatp_cli::Cli;
+use yatp_cli::Context;
 
 fn main() {
     let Cli {
@@ -18,7 +18,7 @@ fn main() {
     } = Cli::parse();
 
     // create context
-    let mut context = Context::new(yatp::Size::new(width, height));
+    let mut context = Context::new(yatp_cli::Size::new(width, height));
 
     // expand inputs into individual file paths
     fn expand_path(path: PathBuf) -> Vec<PathBuf> {

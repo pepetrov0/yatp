@@ -1,5 +1,5 @@
 [package]
-name = "yatp"
+name = "yatp-cli"
 description = "Yet Another Texture Packer - a small and simple CLI application to pack multiple textures/sprites into a texture atlas/sprite sheet"
 authors = ["Petar Petrov <ppetrov@pbyte.xyz>"]
 version = "1.0.0"

@@ -2,6 +2,7 @@ use image::{DynamicImage, RgbaImage};
 
 use crate::{format, Color, Point, Rect, Size};
 
+/// Binary bin packer
 #[derive(Debug)]
 pub struct Packer {
     image: RgbaImage,
@@ -10,11 +11,58 @@ pub struct Packer {
 
 #[derive(Debug)]
 struct Bin {
-    pub occupied: Option<Size>,
-    pub area: Rect,
+    occupied: Option<Size>,
+    area: Rect,
 
-    //                       (top, bottom)
-    pub children: Option<Box<(Bin, Bin)>>,
+    //                   (top, bottom)
+    children: Option<Box<(Bin, Bin)>>,
+}
+
+impl Packer {
+    /// Creates a new packer with given `size` and a transparent background
+    pub fn new(size: Size) -> Self {
+        let mut image = RgbaImage::new(size.width, size.height);
+        image
+            .pixels_mut()
+            .for_each(|v| *v = Color::from([255, 0, 255, 0]));
+
+        Self {
+            image,
+            bins: Bin {
+                occupied: None,
+                children: None,
+                area: Rect::new(Point::new(0, 0), size),
+            },
+        }
+    }
+
+    /// Packs a new `image` with a given `gap` and if successful returns the region it was packed
+    /// in
+    pub fn pack(&mut self, image: &DynamicImage, gap: u32) -> Option<Rect> {
+        let size = Size::new(image.width(), image.height());
+        let gapped_size = Size::new(image.width() + gap * 2, image.height() + gap * 2);
+
+        match self.bins.insert(gapped_size) {
+            Some(rect) => {
+                let rect = Rect::new(Point::new(rect.min_x() + gap, rect.min_y() + gap), size);
+
+                let image = image.to_rgba8();
+                image.enumerate_pixels().for_each(|(x, y, p)| {
+                    self.image.put_pixel(x + rect.min_x(), y + rect.min_y(), *p)
+                });
+
+                Some(rect)
+            }
+            None => None,
+        }
+    }
+
+    /// Saves this packer's image to a file with given `name` and `img` format
+    pub fn save(&self, name: &str, img: format::ImageFormat) -> anyhow::Result<()> {
+        self.image
+            .save_with_format(format!("{}.{}", name, img.ext()), img.as_image_format())?;
+        Ok(())
+    }
 }
 
 impl Bin {
@@ -68,48 +116,5 @@ impl Bin {
         )));
 
         Some(Rect::new(self.area.origin, size))
-    }
-}
-
-impl Packer {
-    pub fn new(size: Size) -> Self {
-        let mut image = RgbaImage::new(size.width, size.height);
-        image
-            .pixels_mut()
-            .for_each(|v| *v = Color::from([255, 0, 255, 0]));
-
-        Self {
-            image,
-            bins: Bin {
-                occupied: None,
-                children: None,
-                area: Rect::new(Point::new(0, 0), size),
-            },
-        }
-    }
-
-    pub fn save(&self, name: &str, img: format::ImageFormat) -> anyhow::Result<()> {
-        self.image
-            .save_with_format(format!("{}.{}", name, img.ext()), img.as_image_format())?;
-        Ok(())
-    }
-
-    pub fn pack(&mut self, image: &DynamicImage, gap: u32) -> Option<Rect> {
-        let size = Size::new(image.width(), image.height());
-        let gapped_size = Size::new(image.width() + gap * 2, image.height() + gap * 2);
-
-        match self.bins.insert(gapped_size) {
-            Some(rect) => {
-                let rect = Rect::new(Point::new(rect.min_x() + gap, rect.min_y() + gap), size);
-
-                let image = image.to_rgba8();
-                image.enumerate_pixels().for_each(|(x, y, p)| {
-                    self.image.put_pixel(x + rect.min_x(), y + rect.min_y(), *p)
-                });
-
-                Some(rect)
-            }
-            None => None,
-        }
     }
 }
