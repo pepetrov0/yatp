@@ -1,3 +1,5 @@
+#![deny(warnings, missing_docs, unsafe_code, nonstandard_style)]
+
 mod cli;
 mod context;
 pub mod dictionary;
